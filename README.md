@@ -18,7 +18,6 @@ npm run test:unit
 ```
 
 ## To play the game
-```
 
 1. Select a color from the bottom of the gamesquare:
 
@@ -35,10 +34,3 @@ npm run test:unit
 
     2.B Repeat 2.A step to fill the whole row
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/4.png?raw=true)
-
-
-
-
-
-```
-
