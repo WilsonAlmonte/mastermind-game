@@ -9,7 +9,7 @@
                     v-for="(code, key) in guess"
                 >
                     <selection-code-peg
-                        :disabled="disabled"
+                        :disabled="disabled||gameEnded"
                         :attempted="attempted"
                         :selectedColor="selectedColor"
                         v-model="guess[key]"
@@ -18,7 +18,7 @@
             </b-row>
         </b-col>
         <b-col cols="3"> 
-            <div v-if="allSelected && !attempted">
+            <div v-if="allSelected && !attempted && !gameEnded">
                 <b-btn @click="tryAttempt" variant="dark" class="btn-try">
                     Try
                 </b-btn>
@@ -57,6 +57,9 @@ export default class SelectionRow extends Vue {
 
     @Prop()
     mastermind: Mastermind;
+
+    @Prop()
+    gameEnded:boolean;
 
     @Prop()
     selectedColor: CodePeg;

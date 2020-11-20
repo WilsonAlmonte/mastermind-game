@@ -18,6 +18,7 @@
                 @last-try-made="onLastTryMade"
                 :mastermind="gameCore"
                 @game-won="onGameWon"
+                :gameEnded="gameEnded"
                 :selectedColor="selectedColor"
                 :codeLength="codeLength"
             ></selection-board>

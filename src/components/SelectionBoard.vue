@@ -11,6 +11,7 @@
             @attempt-made="onAttemptMade"
             :actualAttempt="actualAttempt"
             :attempt="key"
+            :game-ended="gameEnded"
         >
         </selection-row>
     </div>
@@ -35,6 +36,9 @@ export default class SelectionBoard extends Vue {
     @Prop()
     selectedColor:CodePeg
 
+    @Prop()
+    gameEnded:boolean
+
     public attemptsAmmount = 8;
     public attempts: boolean[] = [];
     actualAttempt: number = 0;
@@ -45,7 +49,7 @@ export default class SelectionBoard extends Vue {
 
     onGameWon(attemptIndex:number){
         this.$emit('game-won');
-
+        this.actualAttempt = -1;
         this.onAttemptMade(attemptIndex, true)
     }
 
