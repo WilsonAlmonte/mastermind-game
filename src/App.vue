@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <b-container fluid class="pt-5">
+      <h1 class="font-weight-bold">Welcome to Mastermind</h1>
+      <mastermind></mastermind>
+    </b-container>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Mastermind from '@/components/Mastermind.vue'
+import '@/assets/global.css'
 
 @Component({
   components: {
-
+    Mastermind
   },
 })
 export default class App extends Vue {
@@ -22,12 +27,6 @@ export default class App extends Vue {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+
 </style>

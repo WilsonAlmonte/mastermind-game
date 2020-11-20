@@ -1,4 +1,4 @@
-import Mastermind from "./Mastermind";
+import Mastermind from "./mastermind";
 import {CodePeg, ResultPeg} from './enum/'
 export {
     Mastermind,
