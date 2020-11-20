@@ -5,9 +5,8 @@ enum CodePeg{
     Yellow, 
     Brown, 
     Orange, 
+    Black,
     White, 
-    Black
-
 }
 
 export default CodePeg;

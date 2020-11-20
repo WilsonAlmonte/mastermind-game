@@ -8,6 +8,11 @@
                         :codePegs="hiddenCodes"
                     ></hidden-code>
                 </b-col>
+                <b-col cols="3">
+                    <div class="pt-3 pr-3">
+                        <b-btn size="sm" @click="surrender" style="font-size:10px" class="w-100 btn-try"> 🐔 Surrender </b-btn>
+                    </div>
+                </b-col>
             </b-row>
             <selection-board
                 @last-try-made="onLastTryMade"
@@ -45,7 +50,7 @@ import SelectionBoard from "@/components/SelectionBoard.vue";
 import { CodePeg } from "@/core";
 import ColorOptions from "@/components/ColorOptions.vue";
 import OptionCodePeg from "@/components/OptionCodePeg.vue";
-import {Mastermind} from '@/core'
+import { Mastermind } from "@/core";
 
 @Component({
     components: {
@@ -56,36 +61,43 @@ import {Mastermind} from '@/core'
     },
 })
 export default class MastermindComponent extends Vue {
+    @Prop()
+    codeLength: number;
 
     @Prop()
-    codeLength:number;
+    allowDuplications: boolean;
 
     hiddenCodes: CodePeg[] = [];
-	selectedColor: number = -1;
-    gameCore?:Mastermind = null;
-    gameEnded:boolean = false;
+    selectedColor: number = -1;
+    gameCore?: Mastermind = null;
+    gameEnded: boolean = false;
 
     loadGame() {
         let index = 0;
         while (index < this.codeLength) {
             this.hiddenCodes.push(this.generateRandomCode());
             index++;
-		}
-		this.gameCore = new Mastermind(this.hiddenCodes);
+        }
+        this.gameCore = new Mastermind(this.hiddenCodes);
     }
 
     mounted() {
         this.loadGame();
     }
 
-    onLastTryMade(){
+    onLastTryMade() {
         this.gameEnded = true;
-        this.$emit('game-ended', false);
+        this.$emit("game-ended", false);
     }
 
-    onGameWon(){
+    surrender(){
         this.gameEnded = true;
-        this.$emit('game-ended', true);
+        this.$emit("game-ended", false);
+    }
+
+    onGameWon() {
+        this.gameEnded = true;
+        this.$emit("game-ended", true);
     }
 
     get colorIsSelected() {
@@ -95,8 +107,20 @@ export default class MastermindComponent extends Vue {
     generateRandomCode() {
         const min = CodePeg.Red;
         const max = CodePeg.Black;
-        const random = Math.floor(Math.random() * (+max + 1 - +min)) + +min;
-        return random;
+        let random = -1;
+        random = Math.floor(Math.random() * (+max + 1 - +min)) + +min;
+
+        if (this.allowDuplications) {
+            return random;
+        } else {
+            while (
+                this.hiddenCodes.length != 0 &&
+                this.hiddenCodes.some((x) => x == random)
+            ) {
+                random = Math.floor(Math.random() * (+max + 1 - +min)) + +min;
+            }
+            return random;
+        }
     }
 }
 </script>

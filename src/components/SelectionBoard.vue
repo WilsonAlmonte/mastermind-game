@@ -1,8 +1,8 @@
 <template>
-    <div class="pl-5 mt-5">
+    <div class="pl-5  mt-5">
         <selection-row
             :key="key"
-            @game-won="$emit('game-won')"
+            @game-won="onGameWon"
             v-for="(attempt, key) in attempts"
             :codeLength="codeLength"
             :selectedColor="selectedColor"
@@ -43,11 +43,17 @@ export default class SelectionBoard extends Vue {
         this.loadGuesses();
     }
 
-    onAttemptMade(attemptIndex:number){
+    onGameWon(attemptIndex:number){
+        this.$emit('game-won');
+
+        this.onAttemptMade(attemptIndex, true)
+    }
+
+    onAttemptMade(attemptIndex:number, isGameWinner:boolean = false){
         this.attempts[attemptIndex] = true;
         this.actualAttempt--;
 
-        if(this.actualAttempt < 0){
+        if(this.actualAttempt < 0 && !isGameWinner){
             this.$emit('last-try-made');
         }
     }

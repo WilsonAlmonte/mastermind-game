@@ -9,9 +9,12 @@
                     <div class="d-flex justify-content-center">
                         <div class="w-50 mr-2">
                             <b-form-select
-                                v-model="selected"
+                                v-model="selectedMode"
                                 :options="options"
                             ></b-form-select>
+                            <b-check switch button-variant="success" v-model="selectedDuplicationOption" class="mt-1">
+                                <b>Allow Duplications</b>
+                            </b-check>
                         </div>
                         <div>
                             <b-btn variant="success" @click="restartGame">
@@ -22,6 +25,7 @@
                 </b-col>
                 <b-col cols="12" md="7">
                     <mastermind
+                        :allowDuplications="allowDuplications"
 						:codeLength="codeLength"
                         @game-ended="onGameEnded"
                         :key="gameKey"
@@ -45,8 +49,11 @@ export default class App extends Vue {
     public gameKey: number = 0;
     public validationMsg = " ";
     codeLength: number = 4;
+    selectedMode: number = 4;
 
-    selected: number = 4;
+    allowDuplications:boolean = true;
+    selectedDuplicationOption:boolean = true;
+
     options: any[] = [
         { value: 4, text: "Normal" },
         { value: 6, text: "Hard" },
@@ -65,12 +72,13 @@ export default class App extends Vue {
 
     restartGame() {
         this.gameKey++;
-        this.codeLength = this.selected;
+        this.codeLength = this.selectedMode;
+        this.allowDuplications = this.selectedDuplicationOption;
     }
 
     notifyLose() {
         this.$bvModal
-            .msgBoxOk("You lost but, come on, try again", {
+            .msgBoxConfirm("You lost but, come on, try again", {
                 title: "Actually you were too close :3",
                 size: "md",
                 okTitle: "Sure",
@@ -90,7 +98,7 @@ export default class App extends Vue {
 
     notifySuccess() {
         this.$bvModal
-            .msgBoxOk(
+            .msgBoxConfirm(
                 "Congratulations, you've eaten our candies, now, test you luck again",
                 {
                     title: "Congratulations",
@@ -100,6 +108,7 @@ export default class App extends Vue {
                     cancelTitle: "Not",
                     okVariant: "success",
                     headerClass: "p-2 border-bottom-0",
+                    hideHeaderClose: false,
                     footerClass: "p-2 border-top-0",
                     centered: true,
                 }
