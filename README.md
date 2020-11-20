@@ -33,6 +33,7 @@ npm run test:unit
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/steps-to-play/2.png?raw=true)
 
 2. Fill the row with your guess (color combination): 
+
     2.A Once you have a color selected click into the dark circle and it will be filled with this color
 
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/steps-to-play/3.png?raw=true)
