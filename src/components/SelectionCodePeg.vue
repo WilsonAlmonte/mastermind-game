@@ -2,7 +2,7 @@
     <div
         @click="selectColor"
         :style="{ 'background-color': color }"
-        :class="{ 'selected-color': populated, 'disabled-codepeg':disabled ,'selection-codepeg':!disabled}"
+        :class="{ 'selected-color': populated, 'disabled-codepeg':disabled&&!attempted ,'selection-codepeg':!disabled}"
         class="codepeg"
     ></div>
 </template>

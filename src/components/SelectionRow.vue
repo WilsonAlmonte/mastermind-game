@@ -87,6 +87,9 @@ export default class SelectionRow extends Vue {
         this.results = this.mastermind.getHints(this.guess);
         this.$emit('attempt-made',this.attempt);
 
+        if(this.results.length == 4 && !this.results.some(x => x != ResultPeg.Black)){
+            this.$emit('game-won');
+        }
         
     }
 

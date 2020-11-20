@@ -1,5 +1,5 @@
 <template>
-    <div :style="{'background-color':color}" class="codepeg" >
+    <div :style="{'background-color':color}"  class="codepeg selected-color" >
         <b v-if="isHidden">?</b>
     </div>
 </template>

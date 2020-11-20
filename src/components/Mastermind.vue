@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex justify-content-center w-100">
-        <div class="game-container" v-if="gameCore !=null">
+        <div class="game-container" v-if="gameCore != null">
             <b-row>
                 <b-col cols="9">
                     <hidden-code
@@ -9,8 +9,14 @@
                     ></hidden-code>
                 </b-col>
             </b-row>
-            <selection-board @last-try-made="onLastTryMade" :mastermind="gameCore" :selectedColor="selectedColor" :codeLength="codeLength"></selection-board>
-			<hr>
+            <selection-board
+                @last-try-made="onLastTryMade"
+                :mastermind="gameCore"
+                @game-won="onGameWon"
+                :selectedColor="selectedColor"
+                :codeLength="codeLength"
+            ></selection-board>
+            <hr />
             <b-row class="pt-3">
                 <b-col cols="8">
                     <color-options v-model="selectedColor"></color-options>
@@ -33,7 +39,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import HiddenCode from "@/components/HiddenCode.vue";
 import SelectionBoard from "@/components/SelectionBoard.vue";
 import { CodePeg } from "@/core";
@@ -50,7 +56,10 @@ import {Mastermind} from '@/core'
     },
 })
 export default class MastermindComponent extends Vue {
-    codeLength = 4;
+
+    @Prop()
+    codeLength:number;
+
     hiddenCodes: CodePeg[] = [];
 	selectedColor: number = -1;
     gameCore?:Mastermind = null;
@@ -71,6 +80,12 @@ export default class MastermindComponent extends Vue {
 
     onLastTryMade(){
         this.gameEnded = true;
+        this.$emit('game-ended', false);
+    }
+
+    onGameWon(){
+        this.gameEnded = true;
+        this.$emit('game-ended', true);
     }
 
     get colorIsSelected() {
@@ -87,8 +102,8 @@ export default class MastermindComponent extends Vue {
 </script>
 
 <style>
-hr{
-	border-top: 1px inset rgb(49, 25, 15) !important;
-	margin: 0 0 !important;
+hr {
+    border-top: 1px inset rgb(49, 25, 15) !important;
+    margin: 0 0 !important;
 }
 </style>

@@ -2,6 +2,7 @@
     <div class="pl-5 mt-5">
         <selection-row
             :key="key"
+            @game-won="$emit('game-won')"
             v-for="(attempt, key) in attempts"
             :codeLength="codeLength"
             :selectedColor="selectedColor"
@@ -34,7 +35,7 @@ export default class SelectionBoard extends Vue {
     @Prop()
     selectedColor:CodePeg
 
-    public attemptsAmmount = 4;
+    public attemptsAmmount = 8;
     public attempts: boolean[] = [];
     actualAttempt: number = 0;
 
