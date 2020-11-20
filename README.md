@@ -45,9 +45,11 @@ npm run test:unit
 
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/steps-to-play/5.png?raw=true)
 
-4. Repeat the from 1 to 3 steps until you win/lose the game by guessing all the colors and positions or spending all the attempts you have
+4. Repeat the from 1 to 3 steps until 
+    You win: guessing all the colors and positions.
+    You lose: spending all the attempts you have (8)
 
-After these steps you should receive:
+5. After these steps you should receive:
 
 If you lost:
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/steps-to-play/6.png?raw=true)
@@ -65,3 +67,6 @@ If you won:
 3. Allow Duplications: It enables or disables color duplications in the Code 
 
 4. Surrender: you can surrender anytime you want to, it deffers from just restart because with surrender you can see the Code. You should receive an alert like if you lost
+
+## More info
+If you need more info about this game [click here](https://en.wikipedia.org/wiki/Mastermind_(board_game)) 
