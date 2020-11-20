@@ -18,8 +18,8 @@ npm run test:unit
 ```
 ## Important terms
 
-Code: The color combination you have to guess
-Guess: The color combination that you build in order to try to guess the "Code"
+1. Code: The color combination you have to guess
+2. Guess: The color combination that you build in order to try to guess the "Code"
 
 ## To play the game
 
