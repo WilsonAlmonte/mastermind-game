@@ -12,26 +12,34 @@ export default class Mastermind{
     public getHints(guess:CodePeg[]):ResultPeg[] {
         let resultPeg:ResultPeg[] = [];
         let guessIndex = 0;
-        
+
+        let blackResultIndexes:number[] = [];
+
         for(let guessCodePeg of guess){
 
             let codeIndex = 0;
-            let whiteResultIndex:number = -1;
-              
+            
             for(let hiddenCodePeg of this.code){
-                if(hiddenCodePeg == guessCodePeg){
-
-                    if(codeIndex == guessIndex){
-                        resultPeg.push(ResultPeg.Black);
+                //Check if there's a black result related to the codePeg, if not process it
+                if(!blackResultIndexes.some(x => x==codeIndex)){
+                    if(hiddenCodePeg == guessCodePeg){
+                        if(codeIndex == guessIndex){
+                            resultPeg.push(ResultPeg.Black);
+                            blackResultIndexes.push(codeIndex);
+                            break;
+                        }
+                        else{
+                            resultPeg.push(ResultPeg.White);
+                            break;
+                        }
                     }
-
                 }
                 codeIndex++;
             }
             guessIndex++;
         }
 
-        return resultPeg;
+        return resultPeg.sort((a, b) => a-b);
     }
 
 }
