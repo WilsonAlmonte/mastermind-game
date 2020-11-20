@@ -1,6 +1,7 @@
 enum ResultPeg{
-    Black,
-    White
+    White,
+    Black
+    
 }
 
 export default ResultPeg;

@@ -5,8 +5,8 @@ enum CodePeg{
     Yellow, 
     Brown, 
     Orange, 
-    Purple, 
-    Pink
+    White, 
+    Black
 
 }
 
