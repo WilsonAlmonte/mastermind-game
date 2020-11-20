@@ -38,11 +38,11 @@ npm run test:unit
 
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/steps-to-play/3.png?raw=true)
 
-    2.B Repeat 2.A step to fill the whole row, now you should see "try it" button
+    2.B Repeat 2.A step to fill the whole row, now you should see "Try" button
 
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/steps-to-play/4.png?raw=true)
     
-3. Click "Try it" button to make your guess, you'll receive the results for your guess (red for color and position and white for color only)
+3. Click "Try" button to make your guess, you'll receive the results for your guess (red for color and position and white for color only)
 
 ![alt text](https://github.com/WilsonAlmonte/mastermind-game/blob/main/steps-to-play/5.png?raw=true)
 
